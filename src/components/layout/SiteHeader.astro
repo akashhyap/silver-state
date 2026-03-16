@@ -94,38 +94,22 @@ const navItems = [
       <!-- Desktop nav -->
       <div class="hidden lg:flex items-center gap-1">
         {navItems.map((item) => (
-          <div class="relative group">
-            {item.columns ? (
-              <button class="flex items-center gap-1 px-4 py-2 font-body font-medium text-sm text-gray-700 hover:text-brand-blue rounded-lg hover:bg-blue-50 transition-all duration-150">
-                {item.label}
-                <svg class="w-3.5 h-3.5 mt-px transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-              </button>
-            ) : (
-              <a href={item.href} class="px-4 py-2 font-body font-medium text-sm text-gray-700 hover:text-brand-blue rounded-lg hover:bg-blue-50 transition-all duration-150 block">
-                {item.label}
-              </a>
-            )}
-            {item.columns && (
-              <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 flex gap-8 min-w-max">
-                  {item.columns.map((col) => (
-                    <div>
-                      <p class="text-xs font-body font-semibold text-brand-blue uppercase tracking-widest mb-3">{col.title}</p>
-                      <ul class="space-y-1">
-                        {col.links.map((link) => (
-                          <li>
-                            <a href={link.href} class="block text-sm font-body text-gray-600 hover:text-brand-blue hover:translate-x-0.5 transition-all duration-100 py-0.5">
-                              {link.label}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+          item.columns ? (
+            <button
+              class="desk-drawer-trigger flex items-center gap-1 px-4 py-2 font-body font-medium text-sm text-gray-700 hover:text-brand-blue rounded-lg hover:bg-blue-50 transition-all duration-150"
+              data-drawer={item.label.toLowerCase().replace(/\s+/g, '-')}
+              aria-expanded="false"
+            >
+              {item.label}
+              <svg class="desk-drawer-chevron w-3.5 h-3.5 mt-px transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+          ) : (
+            <a href={item.href} class="px-4 py-2 font-body font-medium text-sm text-gray-700 hover:text-brand-blue rounded-lg hover:bg-blue-50 transition-all duration-150 block">
+              {item.label}
+            </a>
+          )
         ))}
       </div>
 
@@ -153,6 +137,104 @@ const navItems = [
 
 <!-- Header spacer -->
 <div class="h-[108px]"></div>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     DESKTOP LEFT DRAWER
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<div id="desk-backdrop" aria-hidden="true"></div>
+
+<!-- Drawer shell — all panels stacked inside -->
+<div id="desk-drawer" role="dialog" aria-modal="true" aria-label="Navigation">
+
+  <!-- Residential panel -->
+  <div class="desk-panel" id="desk-panel-residential">
+    <div class="desk-panel-head">
+      <div class="desk-panel-title-row">
+        <span class="desk-panel-title">Residential</span>
+        <a href="/residential/" class="desk-panel-all">View All Services →</a>
+      </div>
+      <button class="desk-close" id="desk-close-btn" aria-label="Close menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="desk-panel-body">
+      <div class="desk-col">
+        <p class="desk-col-label">HVAC</p>
+        <a href="/residential/hvac/ac-repair/" class="desk-link">AC Repair</a>
+        <a href="/residential/hvac/ac-installation/" class="desk-link">AC Installation</a>
+        <a href="/residential/hvac/ac-replacement/" class="desk-link">AC Replacement</a>
+        <a href="/residential/hvac/hvac-maintenance/" class="desk-link">HVAC Maintenance</a>
+        <a href="/residential/hvac/furnace-repair/" class="desk-link">Furnace Repair</a>
+        <a href="/residential/hvac/furnace-installation/" class="desk-link">Furnace Installation</a>
+        <a href="/residential/hvac/heat-pump-services/" class="desk-link">Heat Pump Services</a>
+        <a href="/residential/hvac/mini-split-systems/" class="desk-link">Mini-Split Systems</a>
+        <a href="/residential/hvac/emergency-hvac/" class="desk-link">Emergency HVAC</a>
+        <a href="/residential/hvac/indoor-air-quality/" class="desk-link">Indoor Air Quality</a>
+      </div>
+      <div class="desk-col">
+        <p class="desk-col-label">Plumbing</p>
+        <a href="/residential/plumbing/drain-cleaning/" class="desk-link">Drain Cleaning</a>
+        <a href="/residential/plumbing/leak-detection-repair/" class="desk-link">Leak Detection & Repair</a>
+        <a href="/residential/plumbing/pipe-repair-replacement/" class="desk-link">Pipe Repair & Replacement</a>
+        <a href="/residential/plumbing/water-heater-repair/" class="desk-link">Water Heater Repair</a>
+        <a href="/residential/plumbing/water-heater-installation/" class="desk-link">Water Heater Install</a>
+        <a href="/residential/plumbing/tankless-water-heaters/" class="desk-link">Tankless Water Heaters</a>
+        <a href="/residential/plumbing/water-softeners/" class="desk-link">Water Softeners</a>
+        <a href="/residential/plumbing/bathroom-plumbing/" class="desk-link">Bathroom Plumbing</a>
+        <a href="/residential/plumbing/kitchen-plumbing/" class="desk-link">Kitchen Plumbing</a>
+        <a href="/residential/plumbing/sewer-line-services/" class="desk-link">Sewer Line Services</a>
+      </div>
+      <div class="desk-promo">
+        <div class="desk-promo-card">
+          <span class="desk-promo-badge">24/7</span>
+          <p class="desk-promo-title">Emergency Service Available</p>
+          <p class="desk-promo-body">AC failure, burst pipe, heating outage — we respond day or night.</p>
+          <a href="tel:7252137309" class="desk-promo-cta">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+            (725) 213-7309
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Commercial panel -->
+  <div class="desk-panel" id="desk-panel-commercial">
+    <div class="desk-panel-head">
+      <div class="desk-panel-title-row">
+        <span class="desk-panel-title">Commercial</span>
+        <a href="/commercial/" class="desk-panel-all">View All Services →</a>
+      </div>
+      <button class="desk-close" aria-label="Close menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="desk-panel-body">
+      <div class="desk-col">
+        <p class="desk-col-label">Commercial Services</p>
+        <a href="/commercial/hvac/" class="desk-link">Commercial HVAC</a>
+        <a href="/commercial/rooftop-units/" class="desk-link">Rooftop Units</a>
+        <a href="/commercial/refrigeration/" class="desk-link">Commercial Refrigeration</a>
+        <a href="/commercial/plumbing/" class="desk-link">Commercial Plumbing</a>
+        <a href="/commercial/air-duct-cleaning/" class="desk-link">Air Duct Cleaning</a>
+        <a href="/commercial/kitchen-hot-side/" class="desk-link">Kitchen Hot-Side Services</a>
+        <a href="/commercial/government-contracts/" class="desk-link">Government Contracts</a>
+      </div>
+      <div class="desk-promo" style="margin-left: auto;">
+        <div class="desk-promo-card">
+          <span class="desk-promo-badge">Contracts</span>
+          <p class="desk-promo-title">Maintenance Agreements Available</p>
+          <p class="desk-promo-body">Scheduled service, priority response, and compliance documentation for your facility.</p>
+          <a href="/contact-us/" class="desk-promo-cta">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            Get a Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /desk-drawer -->
 
 <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
      MOBILE NAV — bottom sheet + slide-right submenu
@@ -453,6 +535,150 @@ const navItems = [
   }
   .mob-sub-link:active { background: #EFF6FF; color: #0D6EFD; }
   .mob-sub-link:active::before { background: #0D6EFD; }
+
+  /* ═══════════════════════════════════════
+     DESKTOP LEFT DRAWER
+  ═══════════════════════════════════════ */
+
+  /* Backdrop — full viewport, sits below drawer */
+  #desk-backdrop {
+    display: none;
+    position: fixed; inset: 0; z-index: 45;
+    background: rgba(15, 23, 42, 0.35);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    transition: opacity 320ms ease;
+  }
+  #desk-backdrop.active { opacity: 1; }
+
+  /* Drawer shell */
+  #desk-drawer {
+    display: none;
+    position: fixed;
+    top: 108px; /* below both topbar + nav */
+    left: 0; bottom: 0;
+    width: 720px; max-width: 90vw;
+    z-index: 46;
+    overflow: hidden;
+    box-shadow: 8px 0 40px rgba(0,0,0,0.12);
+  }
+
+  /* Individual panel — stacked, all off-screen left initially */
+  .desk-panel {
+    position: absolute; inset: 0;
+    background: #fff;
+    display: flex; flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 320ms cubic-bezier(0.32, 0.72, 0, 1);
+    will-change: transform;
+  }
+  .desk-panel.open { transform: translateX(0); }
+
+  /* Panel header */
+  .desk-panel-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 32px 20px;
+    border-bottom: 1px solid #F3F4F6;
+    flex-shrink: 0;
+  }
+  .desk-panel-title-row {
+    display: flex; align-items: baseline; gap: 16px;
+  }
+  .desk-panel-title {
+    font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700;
+    color: #1B2A4A;
+  }
+  .desk-panel-all {
+    font-size: 13px; font-weight: 600; color: #0D6EFD;
+    text-decoration: none;
+    transition: gap 0.15s;
+  }
+  .desk-panel-all:hover { text-decoration: underline; }
+
+  /* Close button */
+  .desk-close {
+    width: 36px; height: 36px; border: none; background: #F3F4F6;
+    border-radius: 10px; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .desk-close:hover { background: #E5E7EB; }
+  .desk-close svg { width: 16px; height: 16px; color: #374151; }
+
+  /* Panel body */
+  .desk-panel-body {
+    flex: 1; overflow-y: auto;
+    display: flex; gap: 0;
+    padding: 28px 32px 32px;
+    gap: 40px;
+  }
+
+  /* Link columns */
+  .desk-col { flex: 1; min-width: 0; }
+  .desk-col-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: #0D6EFD;
+    margin-bottom: 12px; display: block;
+  }
+  .desk-link {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 10px; margin: 0 -10px;
+    font-size: 14px; font-weight: 500; color: #374151;
+    text-decoration: none; border-radius: 8px;
+    transition: background 0.12s, color 0.12s, gap 0.12s;
+  }
+  .desk-link::before {
+    content: '';
+    width: 4px; height: 4px; border-radius: 50%;
+    background: #CBD5E1; flex-shrink: 0;
+    transition: background 0.12s, transform 0.12s;
+  }
+  .desk-link:hover {
+    background: #EFF6FF; color: #0D6EFD; gap: 10px;
+  }
+  .desk-link:hover::before { background: #0D6EFD; transform: scale(1.4); }
+
+  /* Promo card column */
+  .desk-promo { width: 200px; flex-shrink: 0; }
+  .desk-promo-card {
+    background: linear-gradient(135deg, #1B2A4A 0%, #1e3a6e 100%);
+    border-radius: 16px; padding: 24px;
+    display: flex; flex-direction: column; gap: 10px;
+    height: 100%; max-height: 280px;
+  }
+  .desk-promo-badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    background: #0D6EFD; color: #fff;
+    padding: 3px 10px; border-radius: 99px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    align-self: flex-start;
+  }
+  .desk-promo-title {
+    font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 700;
+    color: #fff; line-height: 1.3;
+  }
+  .desk-promo-body {
+    font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5; flex: 1;
+  }
+  .desk-promo-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #fff; color: #1B2A4A;
+    font-size: 12px; font-weight: 700;
+    padding: 8px 14px; border-radius: 8px;
+    text-decoration: none; align-self: flex-start;
+    transition: opacity 0.15s;
+  }
+  .desk-promo-cta:hover { opacity: 0.9; }
+  .desk-promo-cta svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  /* Active trigger state */
+  .desk-drawer-trigger.active {
+    color: #0D6EFD; background: #EFF6FF;
+  }
+  .desk-drawer-trigger.active .desk-drawer-chevron {
+    transform: rotate(180deg);
+  }
+
 </style>
 
 <!-- ░░ Script ░░ -->
@@ -556,4 +782,86 @@ const navItems = [
   window.addEventListener('scroll', () => {
     siteHeader?.classList.toggle('shadow-md', window.scrollY > 10);
   }, { passive: true });
+
+
+  // ═══════════════════════════════════════
+  // DESKTOP DRAWER
+  // ═══════════════════════════════════════
+  const deskBackdrop = document.getElementById('desk-backdrop')!;
+  const deskDrawer   = document.getElementById('desk-drawer')!;
+  const triggers     = document.querySelectorAll<HTMLElement>('.desk-drawer-trigger');
+
+  let activeDeskPanel: string | null = null;
+  let activeTrigger: HTMLElement | null = null;
+
+  function openDeskDrawer(key: string, trigger: HTMLElement) {
+    // If same panel — close
+    if (activeDeskPanel === key) {
+      closeDeskDrawer();
+      return;
+    }
+
+    // Close previous panel instantly if switching
+    if (activeDeskPanel) {
+      const prev = document.getElementById(`desk-panel-${activeDeskPanel}`);
+      prev?.classList.remove('open');
+      activeTrigger?.classList.remove('active');
+    }
+
+    activeDeskPanel = key;
+    activeTrigger   = trigger;
+
+    deskDrawer.style.display = 'block';
+    deskBackdrop.style.display = 'block';
+
+    trigger.classList.add('active');
+    trigger.setAttribute('aria-expanded', 'true');
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      deskBackdrop.classList.add('active');
+      document.getElementById(`desk-panel-${key}`)?.classList.add('open');
+    }));
+  }
+
+  function closeDeskDrawer() {
+    if (!activeDeskPanel) return;
+
+    const panel = document.getElementById(`desk-panel-${activeDeskPanel}`);
+    panel?.classList.remove('open');
+    deskBackdrop.classList.remove('active');
+    activeTrigger?.classList.remove('active');
+    activeTrigger?.setAttribute('aria-expanded', 'false');
+
+    setTimeout(() => {
+      deskDrawer.style.display = 'none';
+      deskBackdrop.style.display = 'none';
+      activeDeskPanel = null;
+      activeTrigger   = null;
+    }, 320);
+  }
+
+  triggers.forEach(btn => {
+    btn.addEventListener('click', () => {
+      openDeskDrawer(btn.dataset.drawer!, btn);
+    });
+  });
+
+  deskBackdrop.addEventListener('click', closeDeskDrawer);
+
+  document.querySelectorAll('.desk-close').forEach(btn => {
+    btn.addEventListener('click', closeDeskDrawer);
+  });
+
+  deskDrawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeDeskDrawer);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeDeskDrawer();
+      closeSheet();
+    }
+  });
+
 </script>
