@@ -1,5 +1,7 @@
 ---
 // SiteFooter.astro
+import { Image } from 'astro:assets';
+import footerLogo from '../../assets/images/silver-state-logo-footer.png';
 const residential = [
   { label: 'Heating & Cooling',  href: '/residential/hvac/' },
   { label: 'Plumbing Services',  href: '/residential/plumbing/' },
@@ -58,9 +60,8 @@ const company = [
 
       <!-- Brand column -->
       <div class="lg:col-span-1">
-        <a href="/" class="inline-flex flex-col mb-5">
-          <span class="font-display font-bold text-xl text-white tracking-tight">SILVER STATE</span>
-          <span class="font-body text-[10px] text-brand-sky tracking-widest uppercase font-semibold">HVAC · Plumbing · Refrigeration</span>
+        <a href="/" class="inline-flex mb-5">
+          <Image src={footerLogo} alt="Silver State Heating, Cooling & Plumbing" height={64} class="h-16 w-auto" loading="lazy" />
         </a>
         <p class="font-body text-white/60 text-sm leading-relaxed mb-6">
           Licensed HVAC, plumbing & refrigeration experts serving Nevada, California, Arizona, Utah & Texas. Available 24/7.

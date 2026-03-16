@@ -106,5 +106,25 @@ const testimonials = [
     dots[current].classList.remove('bg-gray-200','w-2.5');
   }
   dots.forEach(dot => dot.addEventListener('click', () => goTo(Number((dot as HTMLElement).dataset.index))));
+
+  // Touch swipe
+  const container = document.getElementById('testimonial-container')!;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  container.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  container.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Only trigger if horizontal swipe is dominant (not a scroll)
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      dx < 0
+        ? goTo((current + 1) % slides.length)           // swipe left → next
+        : goTo((current - 1 + slides.length) % slides.length); // swipe right → prev
+    }
+  }, { passive: true });
+
   setInterval(() => goTo((current + 1) % slides.length), 6000);
 </script>

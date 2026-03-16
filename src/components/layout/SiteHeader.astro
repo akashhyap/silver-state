@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoImg from '../../assets/images/silver-state-logo.jpeg';
+
 const navItems = [
   {
     label: 'Residential',
@@ -86,9 +89,8 @@ const navItems = [
   <nav class="bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
     <div class="container-site flex items-center justify-between h-18">
 
-      <a href="/" class="flex flex-col leading-none flex-shrink-0">
-        <span class="font-display font-bold text-xl text-brand-navy tracking-tight">SILVER STATE</span>
-        <span class="font-body text-[10px] text-brand-blue tracking-widest uppercase font-semibold">HVAC · Plumbing · Refrigeration</span>
+      <a href="/" class="flex-shrink-0">
+        <Image src={logoImg} alt="Silver State Heating, Cooling & Plumbing" height={48} class="h-12 w-auto" loading="eager" />
       </a>
 
       <!-- Desktop nav -->
@@ -253,8 +255,7 @@ const navItems = [
     <!-- Sheet header: logo + CTAs -->
     <div class="mob-header">
       <a href="/" class="mob-logo" id="mob-logo-link">
-        SILVER STATE
-        <span>HVAC · Plumbing · Refrigeration</span>
+        <Image src={logoImg} alt="Silver State Heating, Cooling & Plumbing" height={36} class="h-9 w-auto" loading="lazy" />
       </a>
       <div class="mob-ctas">
         <a href="tel:7252137309" class="mob-call" aria-label="Call (725) 213-7309">
@@ -419,13 +420,9 @@ const navItems = [
     flex-shrink: 0; overflow: hidden;
   }
   .mob-logo {
-    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
-    color: #1B2A4A; text-decoration: none; line-height: 1.1;
+    display: flex; align-items: center;
     flex: 1; min-width: 0; overflow: hidden;
-  }
-  .mob-logo span {
-    display: block; font-size: 8px; color: #0D6EFD;
-    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-top: 2px;
+    text-decoration: none;
   }
   .mob-ctas { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
   .mob-call, .mob-book {
@@ -492,7 +489,7 @@ const navItems = [
   /* Submenu header */
   .mob-sub-head {
     display: flex; align-items: center; gap: 12px;
-    padding: 12px 20px; border-bottom: 1px solid #F3F4F6;
+    padding: 18px 20px; border-bottom: 1px solid #F3F4F6;
     position: sticky; top: 0; background: #fff; z-index: 10; flex-shrink: 0;
   }
   .mob-back {
