@@ -1,5 +1,25 @@
 /* Silver State — Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+/* ── Font fallback overrides — reduces CLS while web fonts load ── */
+@font-face {
+  font-family: 'Sora';
+  src: local('Arial');
+  font-weight: 400 800;
+  size-adjust: 95%;
+  ascent-override: 95%;
+  descent-override: normal;
+  line-gap-override: normal;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: local('Arial');
+  font-weight: 300 700;
+  size-adjust: 98%;
+  ascent-override: 96%;
+  descent-override: normal;
+  line-gap-override: normal;
+}
 
 @tailwind base;
 @tailwind components;
