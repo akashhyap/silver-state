@@ -1,19 +1,31 @@
 ---
 import { Image } from 'astro:assets';
 import HeroFloatingCarousel from './HeroFloatingCarousel.astro';
-import heroVan from '../../assets/images/hero-van.webp';
+import heroVan       from '../../assets/images/hero-van.webp';
+import heroVanMobile from '../../assets/images/hero-van-mobile.webp';
 ---
 
 <section class="relative flex flex-col min-h-[72vh] overflow-hidden">
 
   <!-- BG: only this needs absolute -->
   <div class="absolute inset-0 -z-10">
+    <!-- Desktop image — hidden on mobile -->
     <Image
       src={heroVan}
       alt="Silver State Refrigeration & HVAC service van in Las Vegas"
       width={1920}
       quality={65}
-      class="w-full h-full object-cover object-center"
+      class="hidden md:block w-full h-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Mobile image — hidden on desktop -->
+    <Image
+      src={heroVanMobile}
+      alt="Silver State Refrigeration & HVAC service van in Las Vegas"
+      width={768}
+      quality={72}
+      class="block md:hidden w-full h-full object-cover object-center"
       loading="eager"
       fetchpriority="high"
     />
