@@ -1,0 +1,28 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection          from '../components/sections/HeroSection.astro';
+import OverviewSection      from '../components/sections/OverviewSection.astro';
+import SplitFeatureSection  from '../components/sections/SplitFeatureSection.astro';
+import ServicesCardSection  from '../components/sections/ServicesCardSection.astro';
+import DarkCTABannerSection from '../components/sections/DarkCTABannerSection.astro';
+import TrustStripSection    from '../components/sections/TrustStripSection.astro';
+import TestimonialSection   from '../components/sections/TestimonialSection.astro';
+import TeamSection          from '../components/sections/TeamSection.astro';
+import BlogPreviewSection   from '../components/sections/BlogPreviewSection.astro';
+---
+
+<BaseLayout
+  title="Expert HVAC, Plumbing & Refrigeration Services"
+  description="Licensed HVAC, plumbing & refrigeration experts serving Nevada, California, Arizona, Utah & Texas. NATE-certified technicians. Same-day appointments. 24/7 emergency service."
+>
+  <HeroSection />
+  <OverviewSection />
+  <SplitFeatureSection />
+  <ServicesCardSection />
+  <DarkCTABannerSection />
+  <TrustStripSection />
+  <TestimonialSection />
+  <TeamSection />
+  <BlogPreviewSection />
+</BaseLayout>

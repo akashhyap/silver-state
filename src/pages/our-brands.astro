@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import InPageCTA from '../components/ui/InPageCTA.astro';
+
+const brands = [
+  { name: 'Carrier', category: 'HVAC' },
+  { name: 'Trane', category: 'HVAC' },
+  { name: 'Lennox', category: 'HVAC' },
+  { name: 'Rheem', category: 'HVAC / Water Heating' },
+  { name: 'Goodman', category: 'HVAC' },
+  { name: 'American Standard', category: 'HVAC' },
+  { name: 'York', category: 'HVAC' },
+  { name: 'Bryant', category: 'HVAC' },
+  { name: 'Daikin', category: 'Mini-Split' },
+  { name: 'Mitsubishi', category: 'Mini-Split' },
+  { name: 'LG', category: 'Mini-Split' },
+  { name: 'Bradford White', category: 'Water Heating' },
+  { name: 'A.O. Smith', category: 'Water Heating' },
+  { name: 'Navien', category: 'Tankless' },
+  { name: 'Rinnai', category: 'Tankless' },
+  { name: 'Heil', category: 'HVAC' },
+];
+---
+<BaseLayout title="Brands We Service | Silver State HVAC & Plumbing" description="Silver State services and installs all major HVAC, water heating, and plumbing brands. View our full list of supported brands.">
+  <PageHero eyebrow="Our Brands" title="We Service All Major Brands" subtitle="Our NATE-certified technicians are trained on all major HVAC, water heating, and refrigeration brands. No brand is beyond our expertise." breadcrumbs={[{label:'Our Brands',href:''}]} />
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {brands.map(brand => (
+          <div class="card p-4 text-center">
+            <p class="font-display font-bold text-sm text-dark-900">{brand.name}</p>
+            <p class="font-body text-xs text-gray-400 mt-0.5">{brand.category}</p>
+          </div>
+        ))}
+      </div>
+      <p class="font-body text-sm text-gray-400 text-center mt-8">Don't see your brand? We service virtually all HVAC, plumbing, and refrigeration equipment. Contact us to confirm.</p>
+    </div>
+  </section>
+  <InPageCTA />
+</BaseLayout>

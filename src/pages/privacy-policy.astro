@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+---
+<BaseLayout title="Privacy Policy | Silver State" description="Silver State Refrigeration, HVAC & Plumbing privacy policy.">
+  <PageHero eyebrow="Legal" title="Privacy Policy" breadcrumbs={[{label:'Privacy Policy',href:''}]} />
+  <section class="section-pad bg-white">
+    <div class="container-site max-w-3xl mx-auto prose prose-gray font-body">
+      <p class="font-body text-sm text-gray-400 mb-6">Last updated: March 2026</p>
+      <p class="font-body text-base text-gray-600 leading-relaxed mb-4">Silver State Refrigeration, HVAC & Plumbing ("Silver State," "we," "us," or "our") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and share information about you when you use our website or services.</p>
+      <h2 class="font-display font-bold text-xl text-dark-900 mt-8 mb-3">Information We Collect</h2>
+      <p class="font-body text-base text-gray-600 leading-relaxed mb-4">We collect information you provide directly to us when you request service, create an account, subscribe to communications, or contact us for support. This includes name, address, phone number, email address, and details about the service you're requesting.</p>
+      <h2 class="font-display font-bold text-xl text-dark-900 mt-8 mb-3">How We Use Information</h2>
+      <p class="font-body text-base text-gray-600 leading-relaxed mb-4">We use the information we collect to provide, maintain, and improve our services; process service requests and appointments; communicate with you about services, offers, and updates; and comply with legal obligations.</p>
+      <h2 class="font-display font-bold text-xl text-dark-900 mt-8 mb-3">SMS Messaging</h2>
+      <p class="font-body text-base text-gray-600 leading-relaxed mb-4">By providing your phone number, you may opt in to receive SMS messages about appointments, service reminders, and promotions. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for assistance.</p>
+      <h2 class="font-display font-bold text-xl text-dark-900 mt-8 mb-3">Contact Us</h2>
+      <p class="font-body text-base text-gray-600 leading-relaxed">If you have questions about this Privacy Policy, contact us at contact@ssrfg.com or 4535 Copper Sage St., Las Vegas, NV 89115.</p>
+    </div>
+  </section>
+</BaseLayout>

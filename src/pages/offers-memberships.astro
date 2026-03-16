@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import InPageCTA from '../components/ui/InPageCTA.astro';
+---
+<BaseLayout title="Promotions & Maintenance Club | Silver State" description="Current promotions, seasonal offers, and the Silver State Maintenance Club membership program.">
+  <PageHero eyebrow="Offers & Membership" title="Promotions & Maintenance Club" subtitle="Save on services with current promotions and protect your home year-round with our Maintenance Club membership." breadcrumbs={[{label:'Offers & Memberships',href:''}]} />
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- Maintenance Club -->
+        <div class="bg-brand-navy rounded-3xl p-8 text-white">
+          <p class="font-body text-xs text-brand-sky uppercase tracking-widest font-semibold mb-3">Most Popular</p>
+          <h2 class="font-display font-bold text-2xl text-white mb-4">Silver State Maintenance Club</h2>
+          <p class="font-body text-white/70 text-sm leading-relaxed mb-6">Our annual membership program provides complete peace of mind — two professional tune-ups per year, priority emergency service, and exclusive member discounts.</p>
+          <ul class="space-y-3 mb-8">
+            {['Biannual HVAC Tune-Up (Spring & Fall)','Priority Emergency Scheduling','15% Discount on All Repairs','No Overtime Charges for Members','Annual Plumbing Inspection','Satisfaction Guarantee'].map(b => (
+              <li class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-brand-sky flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span class="font-body text-sm text-white/80">{b}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="/contact-us/" class="btn-dark inline-flex">Join the Club <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></a>
+        </div>
+        <!-- Promotions -->
+        <div class="space-y-5">
+          <h2 class="font-display font-bold text-display-sm text-dark-900">Current Promotions</h2>
+          {[
+            { title: '$50 Off Any New System Installation', desc: 'Valid on any new HVAC or water heater installation. Cannot be combined with other offers.', expires: 'Limited time' },
+            { title: 'Free Second Opinion', desc: 'If another company gave you a repair estimate, we\'ll provide a free second opinion — no strings attached.', expires: 'Ongoing' },
+            { title: '$25 Off First Service Call', desc: 'New customers receive $25 off their first service call. Mention this offer when booking.', expires: 'Ongoing' },
+          ].map(promo => (
+            <div class="card p-6 border-l-4 border-brand-blue">
+              <div class="flex items-start justify-between gap-4 mb-2">
+                <h3 class="font-display font-bold text-base text-dark-900">{promo.title}</h3>
+                <span class="font-body text-xs text-white bg-brand-blue px-2.5 py-1 rounded-full flex-shrink-0">{promo.expires}</span>
+              </div>
+              <p class="font-body text-sm text-gray-500">{promo.desc}</p>
+            </div>
+          ))}
+          <a href="/contact-us/" class="btn-primary inline-flex">Claim an Offer <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <InPageCTA />
+</BaseLayout>

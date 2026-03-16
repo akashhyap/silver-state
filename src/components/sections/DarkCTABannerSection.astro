@@ -1,0 +1,85 @@
+---
+// DarkCTABannerSection.astro
+import { Image } from 'astro:assets';
+import imgBg        from '../../assets/images/split-plumbing-leak.jpg';
+import imgCommercial from '../../assets/images/service-commercial.jpg';
+import imgCarrier    from '../../assets/images/overview-carrier-unit.webp';
+import imgFinancing  from '../../assets/images/service-hvac-filter.jpg';
+
+const miniCards = [
+  {
+    title: '24/7 Emergency HVAC',
+    desc:  'AC failure or heating emergency — we respond around the clock.',
+    href:  '/residential/hvac/emergency-hvac/',
+    img: imgCommercial,
+  },
+  {
+    title: 'Maintenance Club',
+    desc:  'Biannual tune-ups, priority scheduling & member-only discounts.',
+    href:  '/offers-memberships/',
+    img: imgCarrier,
+  },
+  {
+    title: 'Flexible Financing',
+    desc:  'Get the comfort you need now with affordable payment options.',
+    href:  '/financing/',
+    img: imgFinancing,
+  },
+];
+---
+
+<section class="relative overflow-hidden">
+
+  <!-- Dark banner -->
+  <div class="relative min-h-[480px] flex items-center">
+    <!-- BG image -->
+    <Image
+      src={imgBg}
+      alt="Silver State plumbing service"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-dark-overlay"></div>
+
+    <!-- Centered content -->
+    <div class="relative z-10 container-site w-full text-center py-16 md:py-24">
+      <p class="eyebrow justify-center text-brand-sky mb-4 aos-init">Available Day & Night</p>
+      <h2 class="font-display font-bold text-display-lg md:text-display-xl text-white leading-tight mb-8 max-w-2xl mx-auto aos-init" style="transition-delay:100ms">
+        Where Reliability<br/>Meets Expert Service.
+      </h2>
+      <div class="aos-init" style="transition-delay:200ms">
+        <a href="/contact-us/" class="btn-dark inline-flex mx-auto">
+          Book Now
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini cards — overlap the banner bottom -->
+  <div class="relative z-10 bg-white">
+    <div class="container-site">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 md:-mt-10 pb-4 stagger">
+        {miniCards.map(card => (
+          <a
+            href={card.href}
+            class="aos-init group flex gap-4 items-center bg-white rounded-2xl p-5 shadow-card hover:shadow-card-lg border border-gray-100 hover:border-brand-blue/20 transition-all duration-300"
+          >
+            <div class="flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden">
+              <Image src={card.img} alt={card.title} width={56} height={56} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h4 class="font-display font-semibold text-sm text-dark-900 mb-0.5 group-hover:text-brand-blue transition-colors">{card.title}</h4>
+              <p class="font-body text-xs text-gray-500 leading-snug line-clamp-2">{card.desc}</p>
+            </div>
+            <svg class="w-4 h-4 text-gray-300 group-hover:text-brand-blue flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import acCondenser from '../../assets/images/overview-ac-condenser.jpg';
+
+const testimonials = [
+  {
+    quote: "I had a great experience with Silver State. I called them the afternoon of May 1, they sent Vince out to do an estimate on May 2, and I had a complete installation of a new air conditioning and heating system done on May 3.",
+    name: "Ellen C. Smith", role: "Las Vegas, NV", avatar: "https://i.pravatar.cc/64?img=47",
+  },
+  {
+    quote: "Vanessa was wonderful. She took the time to explain everything she found during my maintenance and showed me pictures to back up what she was saying. We ended with her getting me an estimate of potential work to be done so I can prioritize.",
+    name: "Diane Gallock", role: "Las Vegas, NV", avatar: "https://i.pravatar.cc/64?img=32",
+  },
+  {
+    quote: "Quick response and quick scheduling. Got my problem fixed within 24 hours. They were very professional and trustworthy. They offered to take their shoes off in my house and went out of their way to ensure I was happy.",
+    name: "Barbara Chandler", role: "Henderson, NV", avatar: "https://i.pravatar.cc/64?img=44",
+  },
+  {
+    quote: "My technician Chris walked me through everything he found and explained why and what needed to be done. He was amazing. I believe in the honesty this company has always shown and highly recommend them.",
+    name: "Barbara Heid", role: "Las Vegas, NV", avatar: "https://i.pravatar.cc/64?img=25",
+  },
+  {
+    quote: "USE THIS COMPANY! How many companies can 'wow' you? They installed a unit for me in 2022. It needed some warranty work. THEY HONORED IT! Seems rare these days.",
+    name: "Jim Asche", role: "Las Vegas, NV", avatar: "https://i.pravatar.cc/64?img=53",
+  },
+];
+---
+
+<section class="section-pad bg-white">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+
+      <!-- Testimonial -->
+      <div class="aos-init">
+        <p class="eyebrow mb-6">What Our Clients Say</p>
+        <div id="testimonial-container" class="relative min-h-[220px] sm:min-h-[240px]">
+          {testimonials.map((t, i) => (
+            <div class={`testimonial-slide transition-all duration-500 ${i === 0 ? '' : 'hidden'}`} data-index={i}>
+              <svg class="w-10 h-7 text-brand-blue/15 mb-4" fill="currentColor" viewBox="0 0 32 24">
+                <path d="M0 24V13.333C0 5.974 4.944.921 14.833 0l1.834 2.667C11.222 3.744 8.333 6.41 7.667 10.667H14V24H0zm18 0V13.333C18 5.974 22.944.921 32.833 0l1.834 2.667C29.222 3.744 26.333 6.41 25.667 10.667H32V24H18z"/>
+              </svg>
+              <blockquote class="font-body text-base sm:text-lg text-gray-700 leading-relaxed mb-6 sm:mb-8">
+                {t.quote}
+              </blockquote>
+              <div class="flex items-center gap-3 sm:gap-4 flex-wrap">
+                <Image src={t.avatar} alt={t.name} width={48} height={48} class="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover ring-2 ring-brand-blue/20 flex-shrink-0" />
+                <div>
+                  <p class="font-display font-semibold text-dark-900 text-sm">{t.name}</p>
+                  <p class="font-body text-xs text-gray-400 mt-0.5">{t.role}</p>
+                </div>
+                <div class="flex gap-0.5 ml-auto">
+                  {Array(5).fill(null).map(() => (
+                    <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="flex items-center gap-2 mt-6 sm:mt-8">
+          {testimonials.map((_, i) => (
+            <button class={`testimonial-dot rounded-full transition-all duration-300 ${i === 0 ? 'bg-brand-blue w-6 h-2.5' : 'bg-gray-200 w-2.5 h-2.5 hover:bg-gray-400'}`} data-index={i} aria-label={`Testimonial ${i + 1}`}></button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Image — badge fully inside on mobile, overlapping on lg -->
+      <div class="relative aos-init" style="transition-delay:150ms">
+        <div class="px-4 sm:px-6 lg:px-0">
+          <div class="rounded-3xl lg:rounded-4xl overflow-hidden aspect-[4/5]">
+            <Image
+              src={acCondenser}
+              alt="Silver State AC condenser unit installation"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <!-- Badge — inset on mobile, overlapping on lg -->
+          <div class="absolute top-0 left-0 sm:top-4 sm:left-0 lg:-left-8 bg-white rounded-2xl px-4 sm:px-5 py-3 sm:py-4 shadow-card-lg border border-gray-100">
+            <p class="font-body text-xs text-gray-400 mb-1">Customer Satisfaction</p>
+            <div class="flex items-baseline gap-1">
+              <span class="font-display font-bold text-xl sm:text-2xl text-dark-900">98%</span>
+              <span class="font-body text-xs text-green-500 font-semibold">↑ Guaranteed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const dots   = document.querySelectorAll('.testimonial-dot');
+  let current  = 0;
+  function goTo(n: number) {
+    slides[current].classList.add('hidden');
+    dots[current].classList.remove('bg-brand-blue','w-6');
+    dots[current].classList.add('bg-gray-200','w-2.5');
+    current = n;
+    slides[current].classList.remove('hidden');
+    dots[current].classList.add('bg-brand-blue','w-6');
+    dots[current].classList.remove('bg-gray-200','w-2.5');
+  }
+  dots.forEach(dot => dot.addEventListener('click', () => goTo(Number((dot as HTMLElement).dataset.index))));
+  setInterval(() => goTo((current + 1) % slides.length), 6000);
+</script>

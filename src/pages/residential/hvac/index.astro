@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/ui/PageHero.astro';
+import InPageCTA from '../../../components/ui/InPageCTA.astro';
+import TrustStripSection from '../../../components/sections/TrustStripSection.astro';
+import { hvacSpokes } from '../../../data/siteData';
+---
+
+<BaseLayout
+  title="Residential HVAC Services | Heating, Cooling & Air Quality"
+  description="Complete residential HVAC services — AC repair, furnace installation, heat pump services, indoor air quality, and more. NATE-certified technicians. 24/7 emergency service."
+>
+  <PageHero
+    eyebrow="HVAC Services"
+    title="Residential Heating, Cooling & Air Quality"
+    subtitle="Our NATE-certified HVAC technicians keep your home comfortable through every season — from emergency AC repair to full system installation and preventive maintenance."
+    breadcrumbs={[
+      { label: 'Residential', href: '/residential/' },
+      { label: 'HVAC', href: '' },
+    ]}
+  />
+
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {hvacSpokes.map(spoke => (
+          <a href={`/residential/hvac/${spoke.slug}/`} class="group card p-6 flex flex-col">
+            <h3 class="font-display font-bold text-lg text-dark-900 group-hover:text-brand-blue transition-colors mb-2">{spoke.title}</h3>
+            <p class="font-body text-sm text-gray-500 leading-relaxed flex-1">{spoke.intro.slice(0, 120)}...</p>
+            <span class="inline-flex items-center gap-1.5 mt-4 font-body font-semibold text-sm text-brand-blue group-hover:gap-2.5 transition-all">
+              Learn More
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </span>
+          </a>
+        ))}
+        <!-- IAQ sub-hub -->
+        <a href="/residential/hvac/indoor-air-quality/" class="group card p-6 flex flex-col">
+          <h3 class="font-display font-bold text-lg text-dark-900 group-hover:text-brand-blue transition-colors mb-2">Indoor Air Quality</h3>
+          <p class="font-body text-sm text-gray-500 leading-relaxed flex-1">Improve the air inside your home with filtration systems, air purifiers, and professional duct cleaning services.</p>
+          <span class="inline-flex items-center gap-1.5 mt-4 font-body font-semibold text-sm text-brand-blue group-hover:gap-2.5 transition-all">
+            Learn More
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <TrustStripSection />
+  <InPageCTA />
+</BaseLayout>

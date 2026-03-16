@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import InPageCTA from '../components/ui/InPageCTA.astro';
+---
+<BaseLayout title="Careers | Join the Silver State Team" description="Build your HVAC or plumbing career with Silver State. We're hiring NATE-certified technicians, apprentices, and support staff across NV, CA, AZ, UT & TX.">
+  <PageHero eyebrow="Careers" title="Build Your Career With Silver State" subtitle="Join a team that values expertise, integrity, and growth. We offer competitive compensation, ongoing training, and genuine advancement opportunities." breadcrumbs={[{label:'Careers',href:''}]} />
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <h2 class="font-display font-bold text-display-sm text-dark-900 mb-6">Why Work at Silver State?</h2>
+          <div class="space-y-4">
+            {[
+              { title: 'Competitive Pay', desc: 'Industry-leading compensation based on certifications and experience.' },
+              { title: 'Ongoing Training', desc: 'NATE certification support, manufacturer training, and continuous education.' },
+              { title: 'Growth Opportunities', desc: 'We promote from within. Many of our supervisors started as technicians.' },
+              { title: 'Great Benefits', desc: 'Health insurance, paid time off, retirement plans, and more.' },
+              { title: '5-State Presence', desc: 'Opportunities available across Nevada, California, Arizona, Utah, and Texas.' },
+            ].map(b => (
+              <div class="flex gap-4 p-4 bg-gray-50 rounded-xl">
+                <svg class="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <div>
+                  <p class="font-display font-semibold text-sm text-dark-900">{b.title}</p>
+                  <p class="font-body text-sm text-gray-500 mt-0.5">{b.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 class="font-display font-bold text-display-sm text-dark-900 mb-6">Apply Today</h2>
+          <form class="space-y-4" onsubmit="return false;">
+            <input type="text" placeholder="Full Name" class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all" />
+            <input type="email" placeholder="Email Address" class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all" />
+            <input type="tel" placeholder="Phone Number" class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all" />
+            <select class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all bg-white">
+              <option value="">Position of Interest...</option>
+              <option>HVAC Technician (Certified)</option>
+              <option>HVAC Apprentice</option>
+              <option>Licensed Plumber</option>
+              <option>Plumbing Apprentice</option>
+              <option>Commercial Refrigeration Tech</option>
+              <option>Dispatcher / Customer Service</option>
+              <option>Other</option>
+            </select>
+            <textarea rows="4" placeholder="Tell us about your experience and why you'd like to join Silver State..." class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all resize-none"></textarea>
+            <button type="submit" class="btn-primary w-full justify-center">Submit Application <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

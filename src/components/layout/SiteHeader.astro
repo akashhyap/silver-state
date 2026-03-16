@@ -1,0 +1,559 @@
+---
+const navItems = [
+  {
+    label: 'Residential',
+    href: '/residential/',
+    columns: [
+      {
+        title: 'HVAC',
+        links: [
+          { label: 'AC Repair',            href: '/residential/hvac/ac-repair/' },
+          { label: 'AC Installation',      href: '/residential/hvac/ac-installation/' },
+          { label: 'AC Replacement',       href: '/residential/hvac/ac-replacement/' },
+          { label: 'HVAC Maintenance',     href: '/residential/hvac/hvac-maintenance/' },
+          { label: 'Furnace Repair',       href: '/residential/hvac/furnace-repair/' },
+          { label: 'Furnace Installation', href: '/residential/hvac/furnace-installation/' },
+          { label: 'Heat Pump Services',   href: '/residential/hvac/heat-pump-services/' },
+          { label: 'Mini-Split Systems',   href: '/residential/hvac/mini-split-systems/' },
+          { label: 'Emergency HVAC',       href: '/residential/hvac/emergency-hvac/' },
+          { label: 'Indoor Air Quality',   href: '/residential/hvac/indoor-air-quality/' },
+        ],
+      },
+      {
+        title: 'Plumbing',
+        links: [
+          { label: 'Drain Cleaning',            href: '/residential/plumbing/drain-cleaning/' },
+          { label: 'Leak Detection & Repair',   href: '/residential/plumbing/leak-detection-repair/' },
+          { label: 'Pipe Repair & Replacement', href: '/residential/plumbing/pipe-repair-replacement/' },
+          { label: 'Water Heater Repair',       href: '/residential/plumbing/water-heater-repair/' },
+          { label: 'Water Heater Install',      href: '/residential/plumbing/water-heater-installation/' },
+          { label: 'Tankless Water Heaters',    href: '/residential/plumbing/tankless-water-heaters/' },
+          { label: 'Water Softeners',           href: '/residential/plumbing/water-softeners/' },
+          { label: 'Bathroom Plumbing',         href: '/residential/plumbing/bathroom-plumbing/' },
+          { label: 'Kitchen Plumbing',          href: '/residential/plumbing/kitchen-plumbing/' },
+          { label: 'Sewer Line Services',       href: '/residential/plumbing/sewer-line-services/' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Commercial',
+    href: '/commercial/',
+    columns: [
+      {
+        title: 'Commercial Services',
+        links: [
+          { label: 'Commercial HVAC',          href: '/commercial/hvac/' },
+          { label: 'Rooftop Units',            href: '/commercial/rooftop-units/' },
+          { label: 'Commercial Refrigeration', href: '/commercial/refrigeration/' },
+          { label: 'Commercial Plumbing',      href: '/commercial/plumbing/' },
+          { label: 'Air Duct Cleaning',        href: '/commercial/air-duct-cleaning/' },
+          { label: 'Kitchen Hot-Side',         href: '/commercial/kitchen-hot-side/' },
+          { label: 'Government Contracts',     href: '/commercial/government-contracts/' },
+        ],
+      },
+    ],
+  },
+  { label: 'Service Areas', href: '/service-areas/' },
+  { label: 'Blog',          href: '/blog/' },
+  { label: 'About Us',      href: '/about-us/' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-shadow duration-300" id="site-header">
+
+  <!-- Top bar -->
+  <div class="bg-brand-navy border-b border-white/10">
+    <div class="container-site flex items-center justify-between h-9">
+      <div class="flex items-center gap-4 sm:gap-6">
+        <a href="tel:7252137309" class="flex items-center gap-1.5 text-white/80 hover:text-white text-xs font-body transition-colors">
+          <svg class="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+          (725) 213-7309
+        </a>
+        <a href="mailto:contact@ssrfg.com" class="hidden sm:flex items-center gap-1.5 text-white/80 hover:text-white text-xs font-body transition-colors">
+          <svg class="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+          contact@ssrfg.com
+        </a>
+      </div>
+      <div class="flex items-center gap-3 sm:gap-4">
+        <span class="hidden sm:block text-white/60 text-xs font-body">24/7 Emergency Service</span>
+        <a href="/offers-memberships/" class="text-brand-sky text-xs font-body font-semibold hover:text-white transition-colors">Maintenance Club</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <nav class="bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="container-site flex items-center justify-between h-18">
+
+      <a href="/" class="flex flex-col leading-none flex-shrink-0">
+        <span class="font-display font-bold text-xl text-brand-navy tracking-tight">SILVER STATE</span>
+        <span class="font-body text-[10px] text-brand-blue tracking-widest uppercase font-semibold">HVAC · Plumbing · Refrigeration</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden lg:flex items-center gap-1">
+        {navItems.map((item) => (
+          <div class="relative group">
+            {item.columns ? (
+              <button class="flex items-center gap-1 px-4 py-2 font-body font-medium text-sm text-gray-700 hover:text-brand-blue rounded-lg hover:bg-blue-50 transition-all duration-150">
+                {item.label}
+                <svg class="w-3.5 h-3.5 mt-px transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+            ) : (
+              <a href={item.href} class="px-4 py-2 font-body font-medium text-sm text-gray-700 hover:text-brand-blue rounded-lg hover:bg-blue-50 transition-all duration-150 block">
+                {item.label}
+              </a>
+            )}
+            {item.columns && (
+              <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 flex gap-8 min-w-max">
+                  {item.columns.map((col) => (
+                    <div>
+                      <p class="text-xs font-body font-semibold text-brand-blue uppercase tracking-widest mb-3">{col.title}</p>
+                      <ul class="space-y-1">
+                        {col.links.map((link) => (
+                          <li>
+                            <a href={link.href} class="block text-sm font-body text-gray-600 hover:text-brand-blue hover:translate-x-0.5 transition-all duration-100 py-0.5">
+                              {link.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- Desktop CTAs -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="tel:7252137309" class="font-body font-semibold text-sm text-brand-navy hover:text-brand-blue transition-colors">
+          (725) 213-7309
+        </a>
+        <a href="/contact-us/" class="btn-primary text-sm px-5 py-2.5">
+          Book Now
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="mob-toggle" class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors" aria-label="Open menu" aria-expanded="false">
+        <svg id="mob-icon-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="mob-icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+    </div>
+  </nav>
+
+</header>
+
+<!-- Header spacer -->
+<div class="h-[108px]"></div>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     MOBILE NAV — bottom sheet + slide-right submenu
+     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+
+<!-- Backdrop -->
+<div id="mob-backdrop" aria-hidden="true"></div>
+
+<!-- Bottom sheet -->
+<div id="mob-sheet" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="mob-sheet-inner">
+
+    <!-- Drag handle -->
+    <div class="mob-handle"><div></div></div>
+
+    <!-- Sheet header: logo + CTAs -->
+    <div class="mob-header">
+      <a href="/" class="mob-logo" id="mob-logo-link">
+        SILVER STATE
+        <span>HVAC · Plumbing · Refrigeration</span>
+      </a>
+      <div class="mob-ctas">
+        <a href="tel:7252137309" class="mob-call" aria-label="Call (725) 213-7309">
+          <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+          <span class="mob-call-text">(725) 213-7309</span>
+        </a>
+        <a href="/contact-us/" class="mob-book">
+          Book Now
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Panels container -->
+    <div class="mob-panels" id="mob-panels">
+
+      <!-- Root panel -->
+      <div class="mob-panel mob-panel-root" id="mob-root">
+        <nav>
+          {navItems.map((item) => (
+            item.columns ? (
+              <button class="mob-nav-item" data-sub={item.label.toLowerCase().replace(/\s+/g,'-')}>
+                <span>{item.label}</span>
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            ) : (
+              <a href={item.href} class="mob-nav-item mob-nav-link">
+                <span>{item.label}</span>
+              </a>
+            )
+          ))}
+          <a href="/financing/" class="mob-nav-item mob-nav-link">
+            <span>Financing</span>
+            <span class="mob-badge">New</span>
+          </a>
+          <a href="/offers-memberships/" class="mob-nav-item mob-nav-link">
+            <span>Maintenance Club</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Residential submenu -->
+      <div class="mob-panel mob-panel-sub" id="mob-sub-residential" data-panel="residential">
+        <div class="mob-sub-head">
+          <button class="mob-back" data-back="residential" aria-label="Back">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <span class="mob-sub-title">Residential</span>
+          <a href="/residential/" class="mob-sub-all">View All →</a>
+        </div>
+        <div class="mob-sub-body">
+          <div class="mob-group">
+            <p class="mob-group-label">HVAC</p>
+            {[
+              ['AC Repair', '/residential/hvac/ac-repair/'],
+              ['AC Installation', '/residential/hvac/ac-installation/'],
+              ['AC Replacement', '/residential/hvac/ac-replacement/'],
+              ['HVAC Maintenance', '/residential/hvac/hvac-maintenance/'],
+              ['Furnace Repair', '/residential/hvac/furnace-repair/'],
+              ['Furnace Installation', '/residential/hvac/furnace-installation/'],
+              ['Heat Pump Services', '/residential/hvac/heat-pump-services/'],
+              ['Mini-Split Systems', '/residential/hvac/mini-split-systems/'],
+              ['Emergency HVAC', '/residential/hvac/emergency-hvac/'],
+              ['Indoor Air Quality', '/residential/hvac/indoor-air-quality/'],
+            ].map(([label, href]) => <a href={href} class="mob-sub-link">{label}</a>)}
+          </div>
+          <div class="mob-group">
+            <p class="mob-group-label">Plumbing</p>
+            {[
+              ['Drain Cleaning', '/residential/plumbing/drain-cleaning/'],
+              ['Leak Detection & Repair', '/residential/plumbing/leak-detection-repair/'],
+              ['Water Heater Repair', '/residential/plumbing/water-heater-repair/'],
+              ['Water Heater Install', '/residential/plumbing/water-heater-installation/'],
+              ['Tankless Water Heaters', '/residential/plumbing/tankless-water-heaters/'],
+              ['Water Softeners', '/residential/plumbing/water-softeners/'],
+              ['Pipe Repair & Replacement', '/residential/plumbing/pipe-repair-replacement/'],
+              ['Bathroom Plumbing', '/residential/plumbing/bathroom-plumbing/'],
+              ['Kitchen Plumbing', '/residential/plumbing/kitchen-plumbing/'],
+              ['Sewer Line Services', '/residential/plumbing/sewer-line-services/'],
+            ].map(([label, href]) => <a href={href} class="mob-sub-link">{label}</a>)}
+          </div>
+        </div>
+      </div>
+
+      <!-- Commercial submenu -->
+      <div class="mob-panel mob-panel-sub" id="mob-sub-commercial" data-panel="commercial">
+        <div class="mob-sub-head">
+          <button class="mob-back" data-back="commercial" aria-label="Back">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <span class="mob-sub-title">Commercial</span>
+          <a href="/commercial/" class="mob-sub-all">View All →</a>
+        </div>
+        <div class="mob-sub-body">
+          <div class="mob-group">
+            <p class="mob-group-label">Commercial Services</p>
+            {[
+              ['Commercial HVAC', '/commercial/hvac/'],
+              ['Rooftop Units', '/commercial/rooftop-units/'],
+              ['Commercial Refrigeration', '/commercial/refrigeration/'],
+              ['Commercial Plumbing', '/commercial/plumbing/'],
+              ['Air Duct Cleaning', '/commercial/air-duct-cleaning/'],
+              ['Kitchen Hot-Side Services', '/commercial/kitchen-hot-side/'],
+              ['Government Contracts', '/commercial/government-contracts/'],
+            ].map(([label, href]) => <a href={href} class="mob-sub-link">{label}</a>)}
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /mob-panels -->
+  </div><!-- /mob-sheet-inner -->
+</div><!-- /mob-sheet -->
+
+<!-- ░░ Styles ░░ -->
+<style>
+  /* Scroll lock */
+  body.mob-open { overflow: hidden; }
+
+  /* Backdrop */
+  #mob-backdrop {
+    position: fixed; inset: 0; z-index: 400;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(2px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 380ms cubic-bezier(0.32,0.72,0,1);
+  }
+  #mob-backdrop.active { opacity: 1; pointer-events: all; }
+
+  /* Sheet */
+  #mob-sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 500;
+    height: 88vh;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    overflow: clip; /* clips children without creating scroll context */
+    transform: translateY(100%);
+    transition: transform 380ms cubic-bezier(0.32,0.72,0,1);
+    display: none;
+  }
+  #mob-sheet.ready { display: flex; }
+  #mob-sheet.open  { transform: translateY(0); }
+
+  .mob-sheet-inner {
+    display: flex; flex-direction: column; height: 100%; width: 100%;
+  }
+
+  /* Handle */
+  .mob-handle {
+    display: flex; justify-content: center;
+    padding: 10px 0 4px; flex-shrink: 0;
+  }
+  .mob-handle div {
+    width: 36px; height: 4px;
+    background: #D1D5DB; border-radius: 99px;
+  }
+
+  /* Sheet header */
+  .mob-header {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 12px 20px 12px 20px;
+    border-bottom: 1px solid #F3F4F6;
+    flex-shrink: 0; overflow: hidden;
+  }
+  .mob-logo {
+    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+    color: #1B2A4A; text-decoration: none; line-height: 1.1;
+    flex: 1; min-width: 0; overflow: hidden;
+  }
+  .mob-logo span {
+    display: block; font-size: 8px; color: #0D6EFD;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-top: 2px;
+  }
+  .mob-ctas { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .mob-call, .mob-book {
+    display: flex; align-items: center; gap: 5px;
+    border-radius: 10px; padding: 8px 11px;
+    font-size: 12px; font-weight: 600; text-decoration: none;
+    white-space: nowrap; transition: opacity 0.15s;
+  }
+  .mob-call {
+    border: 1.5px solid #E5E7EB; color: #1B2A4A;
+    padding: 8px 10px; /* square-ish for icon-only */
+  }
+  .mob-call-text { display: none; } /* hidden on small phones */
+  @media (min-width: 380px) {
+    .mob-call-text { display: inline; }
+    .mob-call { padding: 8px 11px; }
+  }
+  .mob-call:active { background: #F3F4F6; }
+  .mob-book { background: #0D6EFD; color: #fff; }
+  .mob-book:active { opacity: 0.85; }
+  .mob-call svg, .mob-book svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  /* Panels container */
+  .mob-panels {
+    position: relative; flex: 1; overflow: hidden;
+  }
+
+  /* Both panels are absolutely stacked */
+  .mob-panel {
+    position: absolute; inset: 0;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    background: #fff;
+    transition: transform 380ms cubic-bezier(0.32,0.72,0,1);
+    will-change: transform;
+  }
+
+  /* Root panel */
+  .mob-panel-root { transform: translateX(0); z-index: 1; }
+  .mob-panel-root.pushed { transform: translateX(-30%); }
+
+  /* Sub panels start off-screen right */
+  .mob-panel-sub { transform: translateX(100%); z-index: 2; }
+  .mob-panel-sub.visible { display: block; }
+  .mob-panel-sub.open { transform: translateX(0); }
+
+  /* Root nav items */
+  .mob-nav-item {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; padding: 0 20px; height: 52px;
+    font-size: 15px; font-weight: 600; font-family: 'Sora', sans-serif;
+    color: #1B2A4A; background: none; border: none; cursor: pointer;
+    border-bottom: 1px solid #F9FAFB;
+    text-decoration: none; text-align: left;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.12s;
+  }
+  .mob-nav-item:active { background: #EFF6FF; }
+  .mob-nav-item svg { width: 16px; height: 16px; color: #9CA3AF; flex-shrink: 0; }
+  .mob-badge {
+    font-size: 10px; font-weight: 700; background: #0D6EFD; color: #fff;
+    padding: 2px 7px; border-radius: 99px; margin-left: 8px;
+  }
+
+  /* Submenu header */
+  .mob-sub-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 20px; border-bottom: 1px solid #F3F4F6;
+    position: sticky; top: 0; background: #fff; z-index: 10; flex-shrink: 0;
+  }
+  .mob-back {
+    width: 34px; height: 34px; background: #F3F4F6; border: none;
+    border-radius: 10px; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mob-back svg { width: 16px; height: 16px; color: #1B2A4A; }
+  .mob-sub-title {
+    font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 700;
+    color: #1B2A4A; flex: 1;
+  }
+  .mob-sub-all {
+    font-size: 12px; font-weight: 600; color: #0D6EFD;
+    text-decoration: none; flex-shrink: 0;
+  }
+
+  .mob-sub-body { padding-bottom: 32px; }
+
+  .mob-group { padding: 14px 0; border-bottom: 1px solid #F3F4F6; }
+  .mob-group:last-child { border-bottom: none; }
+  .mob-group-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: #0D6EFD;
+    padding: 0 20px 8px; display: block;
+  }
+  .mob-sub-link {
+    display: flex; align-items: center;
+    padding: 10px 20px;
+    font-size: 14px; font-weight: 500; color: #374151;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.1s, color 0.1s;
+  }
+  .mob-sub-link::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: #D1D5DB; margin-right: 12px; flex-shrink: 0;
+    transition: background 0.1s;
+  }
+  .mob-sub-link:active { background: #EFF6FF; color: #0D6EFD; }
+  .mob-sub-link:active::before { background: #0D6EFD; }
+</style>
+
+<!-- ░░ Script ░░ -->
+<script>
+  const toggle     = document.getElementById('mob-toggle')!;
+  const backdrop   = document.getElementById('mob-backdrop')!;
+  const sheet      = document.getElementById('mob-sheet')!;
+  const rootPanel  = document.getElementById('mob-root')!;
+  const iconOpen   = document.getElementById('mob-icon-open')!;
+  const iconClose  = document.getElementById('mob-icon-close')!;
+
+  let isOpen   = false;
+  let activeSub: string | null = null;
+  const EASE   = 380; // match CSS transition ms
+
+  // ── Helpers ──────────────────────────────────────────────
+  function openSheet() {
+    sheet.classList.add('ready');                       // make display:flex
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      isOpen = true;
+      sheet.classList.add('open');
+      backdrop.classList.add('active');
+      document.body.classList.add('mob-open');
+      iconOpen.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+    }));
+  }
+
+  function closeSheet() {
+    isOpen = false;
+    sheet.classList.remove('open');
+    backdrop.classList.remove('active');
+    document.body.classList.remove('mob-open');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    toggle.setAttribute('aria-expanded', 'false');
+    setTimeout(resetPanels, EASE);
+  }
+
+  function resetPanels() {
+    if (activeSub) {
+      const sub = document.getElementById(`mob-sub-${activeSub}`);
+      sub?.classList.remove('open');
+      rootPanel.classList.remove('pushed');
+      setTimeout(() => sub?.classList.remove('visible'), 50);
+      activeSub = null;
+    }
+  }
+
+  function openSub(key: string) {
+    const sub = document.getElementById(`mob-sub-${key}`);
+    if (!sub) return;
+    activeSub = key;
+    sub.classList.add('visible');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      rootPanel.classList.add('pushed');
+      sub.classList.add('open');
+    }));
+  }
+
+  function closeSub() {
+    if (!activeSub) return;
+    const sub = document.getElementById(`mob-sub-${activeSub}`);
+    rootPanel.classList.remove('pushed');
+    sub?.classList.remove('open');
+    setTimeout(() => {
+      sub?.classList.remove('visible');
+      activeSub = null;
+    }, EASE);
+  }
+
+  // ── Event listeners ──────────────────────────────────────
+  toggle.addEventListener('click', () => isOpen ? closeSheet() : openSheet());
+  backdrop.addEventListener('click', closeSheet);
+
+  // Open submenus
+  document.querySelectorAll<HTMLElement>('[data-sub]').forEach(btn => {
+    btn.addEventListener('click', () => openSub(btn.dataset.sub!));
+  });
+
+  // Back buttons
+  document.querySelectorAll<HTMLElement>('.mob-back').forEach(btn => {
+    btn.addEventListener('click', closeSub);
+  });
+
+  // Close on any link click
+  sheet.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeSheet);
+  });
+
+  // Drag-to-dismiss
+  let startY = 0;
+  sheet.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+  sheet.addEventListener('touchend',   e => {
+    if (e.changedTouches[0].clientY - startY > 80) closeSheet();
+  }, { passive: true });
+
+  // Scroll shadow on nav
+  const siteHeader = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    siteHeader?.classList.toggle('shadow-md', window.scrollY > 10);
+  }, { passive: true });
+</script>

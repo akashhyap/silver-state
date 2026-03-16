@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import InPageCTA from '../components/ui/InPageCTA.astro';
+import TrustStripSection from '../components/sections/TrustStripSection.astro';
+import TeamSection from '../components/sections/TeamSection.astro';
+---
+
+<BaseLayout
+  title="About Us | Silver State Refrigeration, HVAC & Plumbing"
+  description="Silver State has served Nevada homes and businesses since 2000. NATE-certified technicians, transparent pricing, and 24/7 availability across NV, CA, AZ, UT & TX."
+>
+  <PageHero
+    eyebrow="About Silver State"
+    title="20+ Years of Trusted Service Across the Southwest"
+    subtitle="Silver State Refrigeration, HVAC & Plumbing has built its reputation on one principle: do the job right, communicate honestly, and stand behind every service call."
+    breadcrumbs={[{ label: 'About Us', href: '' }]}
+  />
+
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="eyebrow mb-4">Our Story</p>
+          <h2 class="font-display font-bold text-display-md text-dark-900 mb-6">Built on Trust in Las Vegas. Grown Across 5 States.</h2>
+          <div class="space-y-4 font-body text-gray-600 text-base leading-relaxed">
+            <p>Silver State Refrigeration, HVAC & Plumbing was founded with a simple mission: provide the kind of honest, expert service that Las Vegas homeowners and businesses could count on — no surprise charges, no unnecessary upsells, no runaround.</p>
+            <p>Over two decades, that commitment has built a team of over 15 NATE-certified technicians and expanded Silver State's reach into California, Arizona, Utah, and Texas. Every new market reflects the same values that earned the trust of our first customers in Nevada.</p>
+            <p>Today, Silver State serves thousands of homes and hundreds of commercial accounts with the same personal touch that defined our early days — just with more trucks, more technicians, and more capabilities.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          {[
+            { value: '20+', label: 'Years in Business' },
+            { value: '1K+', label: 'Five-Star Reviews' },
+            { value: '15+', label: 'Certified Technicians' },
+            { value: '5', label: 'States Served' },
+          ].map(stat => (
+            <div class="bg-gray-50 rounded-2xl p-6 text-center">
+              <p class="font-display font-bold text-4xl text-brand-blue">{stat.value}</p>
+              <p class="font-body text-sm text-gray-500 mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section-pad bg-brand-cream/40">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">Our Values</p>
+        <h2 class="section-title max-w-xl mx-auto">What Sets Us Apart</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {[
+          { icon: '🛡️', title: 'Licensed & Certified', desc: 'Every technician is NATE-certified and licensed in every state we serve.' },
+          { icon: '💬', title: 'Clear Communication', desc: 'We explain what we find, what it costs, and why — before any work begins.' },
+          { icon: '⚡', title: 'Fast Response', desc: 'Same-day service on most calls. 24/7 emergency dispatch available always.' },
+          { icon: '✅', title: 'Satisfaction Guaranteed', desc: 'We stand behind our work with a full satisfaction guarantee on every job.' },
+        ].map(v => (
+          <div class="card p-6 text-center">
+            <span class="text-3xl mb-3 block">{v.icon}</span>
+            <h3 class="font-display font-bold text-base text-dark-900 mb-2">{v.title}</h3>
+            <p class="font-body text-sm text-gray-500 leading-relaxed">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TeamSection />
+  <TrustStripSection />
+  <InPageCTA />
+</BaseLayout>

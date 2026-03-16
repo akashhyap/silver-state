@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+---
+<BaseLayout title="Community Support | Silver State" description="Silver State gives back to the communities we serve across Nevada, California, Arizona, Utah, and Texas.">
+  <PageHero eyebrow="Community" title="Giving Back to the Communities We Serve" subtitle="Silver State is proud to support local charities, schools, and community organizations across all 5 states we serve." breadcrumbs={[{label:'Community Support',href:''}]} />
+  <section class="section-pad bg-white">
+    <div class="container-site max-w-3xl mx-auto text-center">
+      <p class="font-body text-base text-gray-600 leading-relaxed mb-8">For over 20 years, Silver State has been a part of the Las Vegas community — and as we've grown, we've extended that commitment to every city we serve. We believe that being a great company means being a great neighbor.</p>
+      <p class="font-body text-base text-gray-600 leading-relaxed">From sponsoring youth sports leagues to supporting veterans' organizations and food banks, Silver State actively participates in the communities that have trusted us with their homes and businesses. Contact us to learn about current community initiatives or partnership opportunities.</p>
+    </div>
+  </section>
+</BaseLayout>

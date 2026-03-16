@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+---
+<BaseLayout title="Sell Your HVAC/Plumbing Business | Silver State" description="Silver State is actively acquiring HVAC and plumbing businesses across the Southwest. Learn about our acquisition process.">
+  <PageHero eyebrow="Acquisitions" title="Sell Your HVAC or Plumbing Business" subtitle="Silver State is expanding across the Southwest and actively seeking acquisition opportunities. We offer fair valuations, smooth transitions, and respect for your team and customer relationships." breadcrumbs={[{label:'Sell Your Business',href:''}]} />
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <h2 class="font-display font-bold text-display-sm text-dark-900 mb-6">Why Sell to Silver State?</h2>
+          <div class="space-y-4">
+            {[
+              { title: 'Fair Market Valuation', desc: 'We provide transparent, data-driven valuations with no lowball tactics.' },
+              { title: 'Employee Retention', desc: 'We commit to retaining your team and honoring existing compensation.' },
+              { title: 'Customer Continuity', desc: 'Your customers receive the same quality service under the Silver State brand.' },
+              { title: 'Smooth Transition', desc: 'We have a proven process for seamless ownership transitions with minimal disruption.' },
+              { title: 'Confidential Process', desc: 'Initial conversations are 100% confidential. No obligation.' },
+            ].map(b => (
+              <div class="flex gap-4 p-4 bg-gray-50 rounded-xl">
+                <svg class="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <div>
+                  <p class="font-display font-semibold text-sm text-dark-900">{b.title}</p>
+                  <p class="font-body text-sm text-gray-500 mt-0.5">{b.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 class="font-display font-bold text-display-sm text-dark-900 mb-6">Start a Confidential Conversation</h2>
+          <form class="space-y-4" onsubmit="return false;">
+            <input type="text" placeholder="Your Name" class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all" />
+            <input type="text" placeholder="Business Name" class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all" />
+            <input type="text" placeholder="City, State" class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all" />
+            <input type="email" placeholder="Email Address" class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all" />
+            <input type="tel" placeholder="Phone Number" class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all" />
+            <textarea rows="3" placeholder="Tell us about your business (optional)" class="w-full border border-gray-200 rounded-xl px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-blue transition-all resize-none"></textarea>
+            <button type="submit" class="btn-primary w-full justify-center">Send Confidential Inquiry <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

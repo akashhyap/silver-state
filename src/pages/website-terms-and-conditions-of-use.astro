@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+---
+<BaseLayout title="Terms & Conditions | Silver State" description="Website terms and conditions of use for Silver State Refrigeration, HVAC & Plumbing.">
+  <PageHero eyebrow="Legal" title="Terms & Conditions of Use" breadcrumbs={[{label:'Terms & Conditions',href:''}]} />
+  <section class="section-pad bg-white">
+    <div class="container-site max-w-3xl mx-auto">
+      <p class="font-body text-sm text-gray-400 mb-6">Last updated: March 2026</p>
+      <p class="font-body text-base text-gray-600 leading-relaxed mb-4">By using the Silver State Refrigeration, HVAC & Plumbing website, you agree to these Terms and Conditions. Please read them carefully.</p>
+      {[
+        { title: 'Use of Website', body: 'This website is provided for informational purposes about Silver State\'s services. You agree not to use the site for any unlawful purpose or in a manner that could harm Silver State or other users.' },
+        { title: 'Service Information', body: 'Information about services, pricing, and availability is subject to change without notice. Contact us directly for current pricing and availability in your area.' },
+        { title: 'Intellectual Property', body: 'All content on this website, including text, images, and logos, is the property of Silver State Refrigeration, HVAC & Plumbing and may not be reproduced without written permission.' },
+        { title: 'Limitation of Liability', body: 'Silver State shall not be liable for any indirect, incidental, or consequential damages arising from the use of this website or our services beyond what is permitted by applicable law.' },
+        { title: 'Contact', body: 'For questions about these terms, contact us at contact@ssrfg.com.' },
+      ].map(s => (
+        <div class="mb-6">
+          <h2 class="font-display font-bold text-xl text-dark-900 mb-2">{s.title}</h2>
+          <p class="font-body text-base text-gray-600 leading-relaxed">{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

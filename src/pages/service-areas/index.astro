@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/ui/PageHero.astro';
+import InPageCTA from '../../components/ui/InPageCTA.astro';
+import { locations } from '../../data/siteData';
+
+const byState = locations.reduce((acc, loc) => {
+  if (!acc[loc.state]) acc[loc.state] = [];
+  acc[loc.state].push(loc);
+  return acc;
+}, {} as Record<string, typeof locations>);
+---
+<BaseLayout
+  title="HVAC & Plumbing Service Areas | NV, CA, AZ, UT & TX"
+  description="Silver State serves homeowners and businesses across Nevada, California, Arizona, Utah, and Texas with expert HVAC, plumbing, and refrigeration services."
+>
+  <PageHero
+    eyebrow="Service Areas"
+    title="Serving 5 States Across the Southwest"
+    subtitle="Silver State has licensed technicians across Nevada, California, Arizona, Utah, and Texas — ready to serve your home or business with same-day appointments and 24/7 emergency response."
+    breadcrumbs={[{label:'Service Areas',href:''}]}
+  />
+
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <div class="space-y-12">
+        {Object.entries(byState).map(([state, locs]) => (
+          <div>
+            <h2 class="font-display font-bold text-xl text-dark-900 mb-5 pb-3 border-b border-gray-100">{state}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {locs.map(loc => (
+                <a href={`/service-areas/${loc.slug}/`} class="group card p-5 flex items-center justify-between">
+                  <div>
+                    <p class="font-display font-bold text-base text-dark-900 group-hover:text-brand-blue transition-colors">{loc.city}, {loc.stateAbbr}</p>
+                    <p class="font-body text-xs text-gray-400 mt-0.5">{loc.phone}</p>
+                  </div>
+                  <svg class="w-4 h-4 text-gray-300 group-hover:text-brand-blue transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <InPageCTA headline="Don't See Your City?" subline="Contact us — our service area is expanding. We may already serve your neighborhood." />
+</BaseLayout>

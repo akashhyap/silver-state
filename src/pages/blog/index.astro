@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/ui/PageHero.astro';
+import { blogPosts } from '../../data/siteData';
+import { Image } from 'astro:assets';
+import blogSpring   from '../../assets/images/blog-spring-hvac.jpg';
+import blogChecklist from '../../assets/images/blog-hvac-checklist.jpg';
+import blogToilet   from '../../assets/images/blog-running-toilet.webp';
+
+const imgMap: Record<string, ImageMetadata> = {
+  'blog-spring-hvac': blogSpring,
+  'blog-hvac-checklist': blogChecklist,
+  'blog-running-toilet': blogToilet,
+};
+
+const clusters = [
+  { slug: 'hvac', label: 'HVAC & Cooling', color: 'bg-blue-100 text-brand-blue' },
+  { slug: 'plumbing', label: 'Plumbing', color: 'bg-cyan-100 text-cyan-700' },
+  { slug: 'commercial', label: 'Commercial', color: 'bg-slate-100 text-slate-700' },
+];
+---
+
+<BaseLayout
+  title="HVAC & Plumbing Learning Center | Tips, Guides & Insights"
+  description="Expert HVAC and plumbing articles, maintenance guides, and home comfort tips from Silver State's certified technicians."
+>
+  <PageHero
+    eyebrow="Learning Center"
+    title="HVAC & Plumbing Guides for Homeowners"
+    subtitle="Practical advice from our NATE-certified technicians — helping you maintain your home, prevent costly repairs, and make smarter comfort decisions."
+    breadcrumbs={[{ label: 'Blog', href: '' }]}
+  />
+
+  <section class="section-pad bg-white">
+    <div class="container-site">
+
+      <!-- Cluster filter tabs -->
+      <div class="flex flex-wrap gap-2 mb-10">
+        <a href="/blog/" class="font-body font-semibold text-sm px-4 py-2 rounded-full bg-brand-navy text-white">All Articles</a>
+        {clusters.map(c => (
+          <a href={`/blog/${c.slug}/`} class={`font-body font-semibold text-sm px-4 py-2 rounded-full ${c.color} hover:opacity-80 transition-opacity`}>{c.label}</a>
+        ))}
+      </div>
+
+      <!-- Post grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {blogPosts.map(post => (
+          <a href={`/blog/${post.cluster}/${post.slug}/`} class="group card flex flex-col overflow-hidden">
+            <div class="aspect-[16/9] overflow-hidden">
+              <Image
+                src={imgMap[post.img] ?? blogSpring}
+                alt={post.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-col flex-1 p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class={`font-body font-semibold text-xs px-2.5 py-1 rounded-full ${clusters.find(c=>c.slug===post.cluster)?.color ?? 'bg-gray-100 text-gray-600'}`}>
+                  {clusters.find(c => c.slug === post.cluster)?.label}
+                </span>
+                <span class="font-body text-xs text-gray-400">{post.date}</span>
+                <span class="font-body text-xs text-gray-400">· {post.readTime}</span>
+              </div>
+              <h3 class="font-display font-semibold text-base text-dark-900 leading-snug mb-2 group-hover:text-brand-blue transition-colors flex-1">{post.title}</h3>
+              <p class="font-body text-sm text-gray-500 leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
+              <span class="inline-flex items-center gap-1.5 font-body font-semibold text-sm text-brand-blue group-hover:gap-2.5 transition-all mt-auto">
+                Read More
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import imgAaron   from '../../assets/team/Aaron.jpg';
+import imgAllen   from '../../assets/team/Allen.jpg';
+import imgAnna    from '../../assets/team/Anna.jpg';
+import imgChris   from '../../assets/team/Chris.jpg';
+import imgChris2  from '../../assets/team/Chris-2.jpg';
+import imgChris3  from '../../assets/team/Chris-3.jpg';
+import imgJoe     from '../../assets/team/Joe.jpg';
+import imgJoel    from '../../assets/team/Joel.jpg';
+import imgJose    from '../../assets/team/Jose.jpg';
+import imgKlayson from '../../assets/team/Klayson.jpg';
+import imgMarc    from '../../assets/team/Marc.jpg';
+import imgMonico  from '../../assets/team/Monico.jpg';
+import imgNoe     from '../../assets/team/Noe.jpg';
+import imgVanessa from '../../assets/team/Vanessa.jpg';
+import imgGustavo from '../../assets/team/Gustavo.jpg';
+import imgUnsure  from '../../assets/team/Unsure.jpg';
+
+const team = [
+  { name: 'Aaron',       img: imgAaron   },
+  { name: 'Allen',       img: imgAllen   },
+  { name: 'Anna',        img: imgAnna    },
+  { name: 'Chris',       img: imgChris   },
+  { name: 'Chris',       img: imgChris2  },
+  { name: 'Chris',       img: imgChris3  },
+  { name: 'Joe',         img: imgJoe     },
+  { name: 'Joel',        img: imgJoel    },
+  { name: 'Jose',        img: imgJose    },
+  { name: 'Klayson',     img: imgKlayson },
+  { name: 'Marc',        img: imgMarc    },
+  { name: 'Monico',      img: imgMonico  },
+  { name: 'Noe',         img: imgNoe     },
+  { name: 'Vanessa',     img: imgVanessa },
+  { name: 'Gustavo',     img: imgGustavo },
+  { name: 'Team Member', img: imgUnsure  },
+];
+---
+
+<section class="section-pad bg-white overflow-hidden">
+  <div class="container-site">
+
+    <div class="text-center mb-14 aos-init">
+      <p class="eyebrow mb-3">Our Professionals</p>
+      <h2 class="section-title-lg max-w-xl mx-auto">
+        Meet the Team<br/>of Experts
+      </h2>
+      <p class="font-body text-gray-500 text-base mt-4 max-w-lg mx-auto">
+        Skilled, NATE-certified professionals you can trust. Over 15 technicians ready to ensure you get the right person for the right job.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 stagger">
+      {team.map((member) => (
+        <div class="aos-init group flex flex-col items-center text-center">
+          <div class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-100 mb-3">
+            <Image
+              src={member.img}
+              alt={`${member.name} — Silver State technician`}
+              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+          <p class="font-display font-semibold text-sm text-dark-900">{member.name}</p>
+          <p class="font-body text-xs text-gray-400 mt-0.5">Technician</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12 aos-init">
+      <p class="font-body text-gray-500 text-sm mb-4">Want to join the Silver State team?</p>
+      <a href="/careers/" class="btn-primary">
+        View Open Positions
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>

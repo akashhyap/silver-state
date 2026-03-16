@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/ui/PageHero.astro';
+import InPageCTA from '../../../components/ui/InPageCTA.astro';
+import { blogPosts } from '../../../data/siteData';
+import { Image } from 'astro:assets';
+import blogSpring    from '../../../assets/images/blog-spring-hvac.jpg';
+import blogChecklist from '../../../assets/images/blog-hvac-checklist.jpg';
+import blogToilet    from '../../../assets/images/blog-running-toilet.webp';
+
+export function getStaticPaths() {
+  return blogPosts.map(post => ({
+    params: { cluster: post.cluster, slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+const imgMap: Record<string, ImageMetadata> = {
+  'blog-spring-hvac':    blogSpring,
+  'blog-hvac-checklist': blogChecklist,
+  'blog-running-toilet': blogToilet,
+};
+
+const clusterLabel: Record<string, string> = {
+  hvac: 'HVAC & Cooling', plumbing: 'Plumbing', commercial: 'Commercial',
+};
+
+// Convert markdown-like content to paragraphs
+const paragraphs = post.content
+  .split('\n\n')
+  .map(p => p.trim())
+  .filter(Boolean);
+
+// Related posts (same cluster, different post)
+const related = blogPosts.filter(p => p.cluster === post.cluster && p.slug !== post.slug).slice(0, 3);
+---
+
+<BaseLayout title={post.title} description={post.excerpt}>
+  <PageHero
+    eyebrow={clusterLabel[post.cluster]}
+    title={post.title}
+    breadcrumbs={[
+      { label: 'Blog', href: '/blog/' },
+      { label: clusterLabel[post.cluster], href: `/blog/${post.cluster}/` },
+      { label: post.title.slice(0, 40) + '...', href: '' },
+    ]}
+  />
+
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+        <!-- Article -->
+        <article class="lg:col-span-2">
+          <!-- Hero image -->
+          <div class="rounded-3xl overflow-hidden aspect-[16/9] mb-8">
+            <Image
+              src={imgMap[post.img] ?? blogSpring}
+              alt={post.title}
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+
+          <!-- Meta -->
+          <div class="flex items-center gap-4 mb-6">
+            <span class="font-body text-xs font-semibold text-brand-blue bg-blue-50 px-3 py-1 rounded-full">{clusterLabel[post.cluster]}</span>
+            <span class="font-body text-sm text-gray-400">{post.date}</span>
+            <span class="font-body text-sm text-gray-400">· {post.readTime}</span>
+          </div>
+
+          <!-- Content -->
+          <div class="prose prose-gray max-w-none font-body">
+            {paragraphs.map(para => {
+              if (para.startsWith('**') && para.endsWith('**')) {
+                return <h3 class="font-display font-bold text-lg text-dark-900 mt-8 mb-3">{para.replace(/\*\*/g, '')}</h3>;
+              }
+              if (para.startsWith('- ')) {
+                const items = para.split('\n').map(l => l.replace(/^- /, ''));
+                return (
+                  <ul class="space-y-2 my-4 pl-2">
+                    {items.map(item => (
+                      <li class="flex items-start gap-2 text-sm text-gray-600">
+                        <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-blue flex-shrink-0"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                );
+              }
+              return <p class="text-base text-gray-600 leading-relaxed mb-4">{para}</p>;
+            })}
+          </div>
+
+          <!-- CTA inline -->
+          <div class="mt-10 bg-brand-blue/5 border border-brand-blue/20 rounded-2xl p-6">
+            <p class="font-display font-bold text-lg text-dark-900 mb-1">Need Professional Help?</p>
+            <p class="font-body text-sm text-gray-600 mb-4">Silver State's licensed technicians are available same-day across NV, CA, AZ, UT & TX.</p>
+            <a href={post.relatedService} class="btn-primary inline-flex">
+              View Related Service
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+          <!-- Quick contact -->
+          <div class="bg-brand-navy rounded-2xl p-6 text-white">
+            <p class="font-body text-xs text-brand-sky uppercase tracking-widest font-semibold mb-3">Get Service Today</p>
+            <h3 class="font-display font-bold text-lg mb-4">Book an Appointment</h3>
+            <a href="/contact-us/" class="btn-dark w-full justify-center mb-3 flex">Book Online</a>
+            <a href="tel:7252137309" class="flex items-center justify-center gap-2 text-white/80 hover:text-white font-body text-sm font-semibold transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+              (725) 213-7309
+            </a>
+          </div>
+
+          <!-- Related posts -->
+          {related.length > 0 && (
+            <div>
+              <p class="font-body text-xs text-brand-blue uppercase tracking-widest font-semibold mb-4">Related Articles</p>
+              <div class="space-y-4">
+                {related.map(rel => (
+                  <a href={`/blog/${rel.cluster}/${rel.slug}/`} class="group flex gap-3">
+                    <div class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden">
+                      <Image src={imgMap[rel.img] ?? blogSpring} alt={rel.title} width={64} height={64} class="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="font-display font-semibold text-sm text-dark-900 group-hover:text-brand-blue transition-colors line-clamp-2 leading-snug">{rel.title}</p>
+                      <p class="font-body text-xs text-gray-400 mt-1">{rel.date}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <InPageCTA />
+</BaseLayout>

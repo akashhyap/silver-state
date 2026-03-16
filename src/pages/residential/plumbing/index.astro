@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/ui/PageHero.astro';
+import InPageCTA from '../../../components/ui/InPageCTA.astro';
+import TrustStripSection from '../../../components/sections/TrustStripSection.astro';
+import { plumbingSpokes } from '../../../data/siteData';
+---
+<BaseLayout
+  title="Residential Plumbing Services | Silver State HVAC & Plumbing"
+  description="Complete residential plumbing — drain cleaning, water heaters, leak detection, pipe repair, water softeners, and more. Licensed and available 24/7."
+>
+  <PageHero
+    eyebrow="Plumbing Services"
+    title="Complete Residential Plumbing Services"
+    subtitle="From emergency leak repair to full water heater replacement, our licensed plumbers handle every plumbing need with speed, transparency, and lasting workmanship."
+    breadcrumbs={[{label:'Residential',href:'/residential/'},{label:'Plumbing',href:''}]}
+  />
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {plumbingSpokes.map(spoke => (
+          <a href={`/residential/plumbing/${spoke.slug}/`} class="group card p-6 flex flex-col">
+            <h3 class="font-display font-bold text-lg text-dark-900 group-hover:text-brand-blue transition-colors mb-2">{spoke.title}</h3>
+            <p class="font-body text-sm text-gray-500 leading-relaxed flex-1">{spoke.intro.slice(0,120)}...</p>
+            <span class="inline-flex items-center gap-1.5 mt-4 font-body font-semibold text-sm text-brand-blue group-hover:gap-2.5 transition-all">
+              Learn More <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <TrustStripSection />
+  <InPageCTA />
+</BaseLayout>

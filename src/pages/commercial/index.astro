@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/ui/PageHero.astro';
+import InPageCTA from '../../components/ui/InPageCTA.astro';
+import TrustStripSection from '../../components/sections/TrustStripSection.astro';
+import { commercialSpokes } from '../../data/siteData';
+---
+<BaseLayout
+  title="Commercial HVAC, Refrigeration & Plumbing Services"
+  description="Full-service commercial HVAC, refrigeration, plumbing, and duct cleaning across NV, CA, AZ, UT & TX. Government contracts available. 24/7 emergency support."
+>
+  <PageHero
+    eyebrow="Commercial Services"
+    title="Commercial HVAC, Refrigeration & Plumbing"
+    subtitle="Your business can't afford downtime. Silver State's commercial division serves every industry — retail, restaurant, healthcare, education, government — with expert installation, service, and emergency response."
+    breadcrumbs={[{label:'Commercial',href:''}]}
+    bg="navy"
+  />
+
+  <section class="section-pad bg-white">
+    <div class="container-site">
+      <!-- Industries -->
+      <div class="mb-14">
+        <h2 class="font-display font-bold text-display-sm text-dark-900 mb-6 text-center">Industries We Serve</h2>
+        <div class="flex flex-wrap justify-center gap-3">
+          {['Restaurants & Food Service','Retail & Hospitality','Healthcare & Medical','Education & Schools','Government & Municipal','Warehouses & Industrial','Office Buildings','Multi-Family Properties'].map(i => (
+            <span class="font-body text-sm font-medium text-brand-navy bg-blue-50 border border-brand-blue/20 px-4 py-2 rounded-full">{i}</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Service cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {commercialSpokes.map(spoke => (
+          <a href={`/commercial/${spoke.slug}/`} class="group card p-6 flex flex-col">
+            <h3 class="font-display font-bold text-lg text-dark-900 group-hover:text-brand-blue transition-colors mb-2">{spoke.title}</h3>
+            <p class="font-body text-sm text-gray-500 leading-relaxed flex-1">{spoke.intro.slice(0,130)}...</p>
+            <span class="inline-flex items-center gap-1.5 mt-4 font-body font-semibold text-sm text-brand-blue group-hover:gap-2.5 transition-all">
+              Learn More <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TrustStripSection />
+  <InPageCTA headline="Ready to Discuss a Commercial Service Agreement?" subline="Contact us for a customized maintenance agreement for your facility." />
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+// PageHero.astro — used on all inner pages
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  breadcrumbs?: { label: string; href: string }[];
+  bg?: 'navy' | 'blue' | 'default';
+}
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  breadcrumbs = [],
+  bg = 'default',
+} = Astro.props;
+
+const bgClass = {
+  navy: 'bg-brand-navy',
+  blue: 'bg-brand-blue',
+  default: 'bg-gradient-to-br from-brand-navy to-slate-800',
+}[bg];
+---
+
+<section class={`${bgClass} pt-14 pb-16`}>
+  <div class="container-site">
+    {breadcrumbs.length > 0 && (
+      <nav class="flex items-center gap-2 text-xs font-body text-white/50 mb-5" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        {breadcrumbs.map((crumb) => (
+          <>
+            <span>/</span>
+            {crumb.href ? (
+              <a href={crumb.href} class="hover:text-white transition-colors">{crumb.label}</a>
+            ) : (
+              <span class="text-white/80">{crumb.label}</span>
+            )}
+          </>
+        ))}
+      </nav>
+    )}
+    {eyebrow && (
+      <p class="font-body text-brand-sky text-sm font-semibold tracking-widest uppercase mb-3">{eyebrow}</p>
+    )}
+    <h1 class="font-display font-bold text-display-lg text-white leading-tight max-w-3xl">{title}</h1>
+    {subtitle && (
+      <p class="font-body text-white/70 text-lg leading-relaxed mt-4 max-w-2xl">{subtitle}</p>
+    )}
+  </div>
+</section>

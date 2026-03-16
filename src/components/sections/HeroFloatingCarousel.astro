@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import imgHvac      from '../../assets/images/service-hvac-filter.jpg';
+import imgPlumbing  from '../../assets/images/service-plumbing.jpg';
+import imgCommercial from '../../assets/images/service-commercial.jpg';
+import imgHeating   from '../../assets/images/service-heating.jpg';
+import imgSplit     from '../../assets/images/split-hvac-repair.jpg';
+
+const slides = [
+  { img: imgHvac,       alt: 'AC repair service',         title: 'Expert AC Repair & Installation.',    href: '/residential/hvac/ac-repair/' },
+  { img: imgPlumbing,   alt: 'Emergency plumbing service', title: '24/7 Emergency Plumbing Service.',    href: '/residential/plumbing/' },
+  { img: imgCommercial, alt: 'Commercial HVAC service',   title: 'Commercial HVAC & Refrigeration.',    href: '/commercial/' },
+  { img: imgHeating,    alt: 'Furnace installation',      title: 'Furnace Install Before Winter Hits.',  href: '/residential/hvac/furnace-installation/' },
+  { img: imgSplit,      alt: 'Water heater repair',       title: 'Water Heater Repair & Replacement.',  href: '/residential/plumbing/water-heater-repair/' },
+];
+
+const total = slides.length;
+---
+
+<div class="relative w-full" id="hero-carousel-wrap">
+
+  <!-- Slide counter + ring -->
+  <div class="flex justify-end items-center mb-3 pr-1">
+    <div class="relative w-9 h-9 flex items-center justify-center">
+      <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 36 36">
+        <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        <circle id="carousel-ring" cx="18" cy="18" r="15" fill="none" stroke="white" stroke-width="2"
+          stroke-linecap="round" stroke-dasharray="94.2" stroke-dashoffset="75.4"/>
+      </svg>
+      <span id="carousel-counter" class="font-body font-semibold text-[10px] text-white relative z-10">
+        1/{total}
+      </span>
+    </div>
+  </div>
+
+  <!-- Cards track -->
+  <div class="overflow-hidden rounded-2xl" style="width: 420px;">
+    <div id="carousel-track" class="flex gap-3 transition-transform duration-500 ease-in-out">
+      {slides.map((slide, i) => (
+        <a
+          href={slide.href}
+          class="carousel-card flex-shrink-0 flex items-center gap-4 bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl p-4 hover:bg-white/25 transition-colors duration-200"
+          style="width: 360px;"
+          data-index={i}
+        >
+          <div class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden">
+            <Image
+              src={slide.img}
+              alt={slide.alt}
+              width={64}
+              height={64}
+              class="w-full h-full object-cover"
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-sm text-white leading-snug mb-3 line-clamp-2">
+              {slide.title}
+            </p>
+            <span class="inline-flex items-center gap-1.5 bg-white text-brand-navy font-body font-semibold text-xs px-3.5 py-1.5 rounded-full hover:bg-brand-cream transition-colors">
+              Get Started
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const track   = document.getElementById('carousel-track') as HTMLElement;
+  const counter = document.getElementById('carousel-counter') as HTMLElement;
+  const ring    = document.getElementById('carousel-ring') as SVGCircleElement;
+  const cards   = track?.querySelectorAll('.carousel-card');
+  const total   = cards?.length ?? 1;
+  const circumference = 94.2;
+  let current   = 0;
+  let autoTimer: ReturnType<typeof setInterval>;
+
+  function goTo(index: number) {
+    current = index;
+    track.style.transform = `translateX(-${current * 372}px)`;
+    counter.textContent = `${current + 1}/${total}`;
+    ring.style.strokeDashoffset = String(circumference - ((current + 1) / total) * circumference);
+  }
+
+  function next() { goTo((current + 1) % total); }
+  function startAuto() { autoTimer = setInterval(next, 4000); }
+  function stopAuto()  { clearInterval(autoTimer); }
+
+  const wrap = document.getElementById('hero-carousel-wrap');
+  wrap?.addEventListener('mouseenter', stopAuto);
+  wrap?.addEventListener('mouseleave', startAuto);
+
+  let startX = 0;
+  track?.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; stopAuto(); }, { passive: true });
+  track?.addEventListener('touchend',   (e) => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? next() : goTo((current - 1 + total) % total);
+    startAuto();
+  }, { passive: true });
+
+  goTo(0);
+  startAuto();
+</script>

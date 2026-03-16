@@ -1,0 +1,114 @@
+/* Silver State — Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-body text-dark-900 bg-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Section spacing */
+  .section-pad {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .section-pad-sm {
+    @apply py-14 md:py-20;
+  }
+
+  /* Container */
+  .container-site {
+    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-brand-blue font-body font-semibold text-sm tracking-widest uppercase;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply block w-6 h-px bg-brand-blue;
+  }
+
+  /* Section headline */
+  .section-title {
+    @apply font-display font-bold text-display-md text-dark-900 leading-tight;
+  }
+
+  .section-title-lg {
+    @apply font-display font-bold text-display-lg text-dark-900 leading-tight;
+  }
+
+  /* CTA Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2.5 bg-brand-blue text-white font-body font-semibold text-base px-7 py-3.5 rounded-full 
+           hover:bg-blue-700 active:scale-[0.98]
+           transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2.5 border-2 border-white text-white font-body font-semibold text-base px-7 py-3.5 rounded-full
+           hover:bg-white hover:text-brand-navy
+           transition-all duration-200;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center gap-2.5 bg-white text-brand-navy font-body font-semibold text-base px-7 py-3.5 rounded-full
+           hover:bg-brand-cream active:scale-[0.98]
+           transition-all duration-200 shadow-md;
+  }
+
+  /* Hero white pill CTA — matches design exactly */
+  .btn-hero {
+    @apply inline-flex items-center gap-3 bg-white text-dark-900 font-body font-semibold text-base
+           px-6 py-3.5 rounded-full
+           hover:bg-brand-cream active:scale-[0.98]
+           transition-all duration-200 shadow-lg;
+  }
+
+  /* Social icon circles in hero */
+  .hero-social-btn {
+    @apply w-9 h-9 rounded-full border border-white/40 flex items-center justify-center
+           text-white hover:bg-white/20 hover:border-white/70
+           transition-all duration-200;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-lg transition-shadow duration-300;
+  }
+
+  /* Animate on scroll — initial hidden state */
+  .aos-init {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger delays for grid children */
+.stagger > *:nth-child(1) { transition-delay: 0ms; }
+.stagger > *:nth-child(2) { transition-delay: 100ms; }
+.stagger > *:nth-child(3) { transition-delay: 200ms; }
+.stagger > *:nth-child(4) { transition-delay: 300ms; }

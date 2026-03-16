@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import hvacRepair from '../../assets/images/split-hvac-repair.jpg';
+---
+
+<section class="section-pad bg-brand-cream/40">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Left -->
+      <div class="aos-init">
+        <p class="eyebrow mb-4">Why Homeowners Choose Silver State</p>
+        <h2 class="font-display font-bold text-display-lg text-dark-900 leading-tight mb-6">
+          Fast, Reliable<br/>Service.<br/>
+          <span class="text-brand-blue">Every Time.</span>
+        </h2>
+        <p class="font-body text-gray-500 text-base leading-relaxed mb-8 max-w-md">
+          Whether it's installing a new air conditioning system, performing emergency plumbing repairs, or ensuring your heating system runs efficiently — we're dedicated to creating environments that promote comfort and peace of mind.
+        </p>
+        <ul class="space-y-4 mb-10">
+          {[
+            'Same-day appointments available across all markets',
+            'NATE-certified, licensed & fully insured technicians',
+            'Transparent pricing — no hidden fees or surprises',
+            '24/7 emergency response, day or night',
+          ].map(item => (
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full bg-brand-blue/10 flex items-center justify-center">
+                <svg class="w-3 h-3 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+              </span>
+              <span class="font-body text-sm text-gray-600 leading-snug">{item}</span>
+            </li>
+          ))}
+        </ul>
+        <a href="/contact-us/" class="btn-primary">
+          Book a Service
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Right: image + badges — badges tucked inside on mobile, overlap on md+ -->
+      <div class="relative aos-init mt-8 lg:mt-0" style="transition-delay:150ms">
+        <!-- Extra padding on mobile so badges don't clip -->
+        <div class="px-4 sm:px-8 lg:px-0">
+          <div class="rounded-3xl lg:rounded-4xl overflow-hidden aspect-[4/5]">
+            <Image
+              src={hvacRepair}
+              alt="Silver State HVAC technicians working on an AC unit"
+              class="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
+            />
+          </div>
+
+          <!-- Bottom-left badge — safe inset on mobile, overlapping on md+ -->
+          <div class="absolute bottom-0 left-0 sm:-bottom-5 sm:-left-0 md:-left-8 bg-brand-navy rounded-2xl p-4 sm:p-5 shadow-card-lg">
+            <div class="flex items-center gap-3 sm:gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-blue/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-sky" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-display font-bold text-xl sm:text-2xl text-white leading-none">20+</p>
+                <p class="font-body text-xs text-white/60 mt-0.5">Years of Experience</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top-right badge — safe inset on mobile -->
+          <div class="absolute top-0 right-0 sm:-top-4 sm:-right-0 md:-right-6 bg-brand-blue rounded-2xl px-3 sm:px-4 py-2 sm:py-3 shadow-card">
+            <p class="font-display font-bold text-white text-base sm:text-lg leading-none">15+</p>
+            <p class="font-body text-xs text-white/80 mt-0.5">Expert Technicians</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

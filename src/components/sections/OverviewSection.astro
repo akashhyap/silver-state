@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+import carrierUnit from '../../assets/images/overview-carrier-unit.webp';
+---
+
+<section class="section-pad bg-white">
+  <div class="container-site">
+
+    <div class="text-center mb-14 aos-init">
+      <p class="eyebrow mb-3">Residential & Commercial Services</p>
+      <h2 class="section-title-lg max-w-2xl mx-auto">
+        Complete Home Comfort<br/>& Business Solutions
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5 stagger">
+
+      <!-- Stat card -->
+      <div class="aos-init relative rounded-3xl overflow-hidden bg-brand-navy min-h-[380px] flex flex-col justify-between p-8">
+        <Image
+          src={carrierUnit}
+          alt="Carrier HVAC unit installed by Silver State"
+          class="absolute inset-0 w-full h-full object-cover opacity-25"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/80 to-brand-navy/40"></div>
+        <div class="relative z-10">
+          <p class="font-body font-semibold text-xs text-brand-sky uppercase tracking-widest mb-2">Trusted Since 2000</p>
+          <h3 class="font-display font-bold text-xl text-white">Making Everything<br/>Right for You</h3>
+        </div>
+        <div class="relative z-10 flex items-end justify-between">
+          <div>
+            <p class="font-body text-xs text-white/50 uppercase tracking-wider mb-1">Five-Star Reviews</p>
+            <span class="font-display font-bold text-5xl text-white">1K+</span>
+          </div>
+          <div class="relative w-20 h-20">
+            <svg viewBox="0 0 80 80" class="w-full h-full -rotate-[135deg]">
+              <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="6" stroke-dasharray="141 47"/>
+              <circle cx="40" cy="40" r="30" fill="none" stroke="#38B6FF" stroke-width="6" stroke-dasharray="105 83" stroke-linecap="round"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="font-display font-bold text-sm text-white">4.9★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 grid grid-rows-2 gap-4 lg:gap-5">
+        <div class="aos-init card p-8 flex gap-6 items-start">
+          <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-display font-bold text-lg text-dark-900 mb-2">Residential HVAC & Plumbing</h3>
+            <p class="font-body text-sm text-gray-500 leading-relaxed">
+              From AC repair in triple-digit Las Vegas heat to furnace installation before a Utah winter — our NATE-certified team keeps your home comfortable year-round. Licensed plumbers on call too.
+            </p>
+            <a href="/residential/" class="inline-flex items-center gap-1.5 mt-4 font-body font-semibold text-sm text-brand-blue hover:gap-2.5 transition-all">
+              Explore Residential
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="aos-init card p-8 flex gap-6 items-start">
+          <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-display font-bold text-lg text-dark-900 mb-2">Commercial Refrigeration & HVAC</h3>
+            <p class="font-body text-sm text-gray-500 leading-relaxed">
+              Rooftop units, walk-in coolers, commercial plumbing, government contracts — full-service commercial solutions for businesses of every size across 5 states, available 24/7.
+            </p>
+            <a href="/commercial/" class="inline-flex items-center gap-1.5 mt-4 font-body font-semibold text-sm text-brand-blue hover:gap-2.5 transition-all">
+              Explore Commercial
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
