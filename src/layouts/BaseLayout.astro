@@ -56,19 +56,16 @@ const {
   <SiteFooter />
 
   <!-- Scroll-triggered animation observer -->
-  <script>
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('aos-animate');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
-    document.querySelectorAll('.aos-init').forEach(el => observer.observe(el));
+  <script is:inline>
+    var _obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('aos-animate');
+          _obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.aos-init').forEach(function(el) { _obs.observe(el); });
   </script>
 </body>
 </html>
